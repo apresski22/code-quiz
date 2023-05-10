@@ -1,157 +1,75 @@
-// create start button
-function hide() {
-  document.getElementById("intro").hidden = true;
-  document.getElementById("start").hidden = true;
-}
+// Questions will be asked
+function startButton() {
+  //show hidden tracker, time, counter, question and option elements
+  function hide() {
+    //consolidate and hide entire header, div and children
+    //document.getElementsByClassName("start").hidden = true;
+    //document.getElementsByClassName("container").hidden = true;
+    document.getElementById("intro").hidden = true;
+    document.getElementById("start").hidden = true;
+  }
+  //code below doesn't hide/unhide
+  function show() {
+    document.getElementById("time").style.visibility = "visible";
+    document.getElementById("score").hidden = false;
+    document.getElementById("counter").hidden = false;
+  }
 
-function show() {
-  document.getElementById("tracker").hidden = false;
-  document.getElementById("time").hidden = false;
+  function setTime() {
+    // Sets interval in variable
+    var timerInterval = setInterval(function () {
+      secondsLeft--;
+      timeEl.textContent = secondsLeft + " seconds";
+
+      if (secondsLeft === 0) {
+        // Stops execution of action at set interval
+        clearInterval(timerInterval);
+        // hide "Quiz time tracker element" hideTracker - can it go in sendMessage function?
+        // Calls function to create and append image
+        sendMessage();
+        // call startQuiz function
+      }
+    }, 1000);
+  }
+  hide();
+  show();
+  setTime();
 }
 
 //document.getElementByClass("start").addEventListener("click", show);
 var startEl = document.querySelector(".start");
-// function to start timer when start button is clicked, not when page opems - 09 Timer Intervals
-// event.preventDefault();
-// Selects element by class
 
 //timer elements:
-var mainEl = document.querySelector(".main");
 var timeEl = document.querySelector("#time");
 var trackerEl = document.querySelector("#tracker");
 var counterEl = document.querySelector("#counter");
 var secondsLeft = 10;
 
 // final score - local storage objects
+function sendMessage() {
+  // add + finalScore variable or replace img with final score
+  // hide Quiz time tracker section to include .time and #counter
+  alert("End of game! Your score is ");
+}
 
 function setTime() {
-  // Sets interval in variable
   var timerInterval = setInterval(function () {
     secondsLeft--;
-    trackerEl.textContent = "Quiz Time Tracker";
-    timeEl.textContent = secondsLeft + " seconds left.";
-
-    if (secondsLeft === 0) {
+    timeEl.textContent = secondsLeft + " seconds";
+    if (secondsLeft === -1) {
       // Stops execution of action at set interval
       clearInterval(timerInterval);
       // hide "Quiz time tracker element" hideTracker - can it go in sendMessage function?
       // Calls function to create and append image
       sendMessage();
+
       // call startQuiz function
     }
   }, 1000);
 }
-
-// when timer starts a question is presented
-
-/* 
-var questions = [
-  {
-    question: "What is HTML?",
-    answers: {
-      a: "3",
-      b: "5",
-      c: "115",
-    },
-    correctAnswer: "b",
-  },
-  {
-    question: "What is 30/3?",
-    answers: {
-      a: "3",
-      b: "5",
-      c: "10",
-    },
-    correctAnswer: "c",
-  },
-];
-
-console.log(questions);
-
-/*
-function startQuiz(setTime, showQuestion) {
-
-}
-*/
-
-// fuction for retrieving question with answer choices
-/* function showQuestion (questions, quizContainer) {
-  // we'll need a place to store the output and the answer choices
-	var output = [];
-	var answers;
-  for(var i=0; i<questions.length; i++){
-		
-		// first reset the list of answers
-		answers = [];
-
-		// for each available answer to this question...
-		for(letter in questions[i].answers){
-
-			// ...add an html radio button
-			answers.push(
-				'<label>'
-					+ '<input type="radio" name="question'+i+'" value="'+letter+'">'
-					+ letter + ': '
-					+ questions[i].answers[letter]
-				+ '</label>'
-			);
-		}
-
-		// add this question and its answers to the output
-		output.push(
-			'<div class="question">' + questions[i].question + '</div>'
-			+ '<div class="answers">' + answers.join('') + '</div>'
-		);
-	}
-  quizContainer.innerHTML = output.join('');
-}
-*/
-
-// run above function
-// showQuestions(questions, quizContainer);
+//code below isn't working now
 
 // function for showing results
-/*
-function showResults(questions, quizContainer, resultsContainer){
-	
-	// gather answer containers from our quiz
-	var answerContainers = quizContainer.querySelectorAll('.answers');
-	
-	// keep track of user's answers
-	var userAnswer = '';
-	var numCorrect = 0;
-	
-	// for each question...
-	for(var i=0; i<questions.length; i++){
-
-		// find selected answer
-		userAnswer = (answerContainers[i].querySelector('input[name=question'+i+']:checked')||{}).value;
-		
-		// if answer is correct move on to next question
-		if(userAnswer===questions[i].correctAnswer){
-			// add to the number of correct answers
-			numCorrect++;
-			
-			// color the answers green
-			answerContainers[i].style.color = 'lightgreen';
-		}
-		// if answer is wrong or blank, decrement the score
-		else{
-			// color the answers red
-			answerContainers[i].style.color = 'red';
-		}
-	}
-
-	// show number of correct answers out of total
-	resultsContainer.innerHTML = numCorrect + ' out of ' + questions.length;
-// or score and replace h2 span in html
-// counterEl.textContent = "Current Score: " + score;
-}
-submitButton.onclick = function(){
-	showResults(questions, quizContainer, resultsContainer);
-}
-
-*/
 
 // Questions will be asked
 const Questions = [
@@ -161,28 +79,42 @@ const Questions = [
     a: [
       { text: "How To Make Lunch", isCorrect: false },
       { text: "Happy Text Markup Language", isCorrect: false },
-      { text: "Hyper Text Markup Language", isCorrect: true },
-      { text: "mumbai", isCorrect: false },
+      { text: "HyperText Markup Language", isCorrect: true },
+      { text: "It doesn't stand for anything", isCorrect: false },
     ],
   },
   {
     id: 1,
-    q: "What is the capital of Thailand?",
+    q: "JavaScript is",
     a: [
-      { text: "Lampang", isCorrect: false, isSelected: false },
-      { text: "phuket", isCorrect: false },
-      { text: "Ayutthaya", isCorrect: false },
-      { text: "Bangkok", isCorrect: true },
+      {
+        text: "a popular bookstore in New York",
+        isCorrect: false,
+        isSelected: false,
+      },
+      { text: "a type of font", isCorrect: false },
+      { text: "easy to learn", isCorrect: false },
+      { text: "the main programming language for websites", isCorrect: true },
     ],
   },
   {
     id: 2,
-    q: "What is the capital of Gujarat",
+    q: "To comment out a line in CSS use",
     a: [
-      { text: "surat", isCorrect: false },
-      { text: "vadodara", isCorrect: false },
-      { text: "gandhinagar", isCorrect: true },
-      { text: "rajkot", isCorrect: false },
+      { text: "<!--", isCorrect: false },
+      { text: "#", isCorrect: false },
+      { text: "/*", isCorrect: true },
+      { text: "//", isCorrect: false },
+    ],
+  },
+  {
+    id: 3,
+    q: "What is the difference between hoisting and scoping",
+    a: [
+      { text: "<!--", isCorrect: false },
+      { text: "#", isCorrect: false },
+      { text: "/*", isCorrect: true },
+      { text: "//", isCorrect: false },
     ],
   },
 ];
@@ -195,6 +127,7 @@ function iterate(id) {
   // Getting the result display section
   var result = document.getElementsByClassName("result");
   result[0].innerText = "";
+  // Getting the score display section
 
   // Getting the question
   const question = document.getElementById("question");
@@ -220,9 +153,13 @@ function iterate(id) {
   op3.value = Questions[id].a[2].isCorrect;
   op4.value = Questions[id].a[3].isCorrect;
 
-  var selected = "";
+  /* themeButtonEl.on("click", function () {
 
+  })
+*/
   // Show selection for op1
+  //11- event listener 1:03 Web APIs day2
+  var selected = "";
   op1.addEventListener("click", () => {
     op1.style.backgroundColor = "lightgoldenrodyellow";
     op2.style.backgroundColor = "lightskyblue";
@@ -259,20 +196,50 @@ function iterate(id) {
   });
 
   // Grabbing the evaluate button
-  const evaluate = document.getElementsByClassName("evaluate");
 
-  // Evaluate method
+  /*var evaluate = document.getElementsByClassName("evaluate");
+function setCounterText() {
+  evaluate.textContent = count;
+}
+evaluate[0].addEventListener("click", () {
+  if (selected === false) {
+    count--;
+    setCounterText();
+    //localStorage.setItem("evaluate", count);
+  }
+});
+*/
+
+  var evaluate = document.getElementsByClassName("evaluate");
+  var decrementEl = document.getElementsByClassName("evaluate");
+  var countEl = document.querySelector("#counter");
+
   evaluate[0].addEventListener("click", () => {
-    if (selected == "true") {
-      result[0].innerHTML = "True";
-      result[0].style.color = "green";
-    } else {
+    if (selected == "false") {
       result[0].innerHTML = "False";
       result[0].style.color = "red";
     }
+    function setCounterText() {
+      countEl.textContent = count;
+      // Attach event listener to decrement button element
+      decrementEl[0].addEventListener("click", () => {
+        // Action will fire if count is greater than  0
+        if (selected == "false") {
+          count--;
+          console.log(count);
+        }
+      });
+      setCounterText();
+    }
+    //else {
+    //result[0].innerHTML = "False";
+    //result[0].style.color = "red";
+    //count--;
+    //setCounterText();
+    //localStorage.setItem("evaluate", count);
+    //}
   });
 }
-
 if (start) {
   iterate("0");
 }
@@ -283,14 +250,12 @@ var id = 0;
 
 next.addEventListener("click", () => {
   start = false;
-  if (id < 2) {
+  if (id < 3) {
     id++;
     iterate(id);
     console.log(id);
   }
 });
-
-// another question is presented when the previous one is answered - event bubbling
 
 // decrement function for incorrect answer - local storage
 // if answer == true, keep timer going, if answer !=, decrement i-- from timer
@@ -301,6 +266,7 @@ var submitButton = document.querySelector("#counter");
 var count = localStorage.getItem("count");
 
 counter.textContent = count;
+
 // get counter to go past zero into negatives. function below stops decrementing when it gets to zero
 submitButton.addEventListener("click", function () {
   if (count > 0) {
@@ -311,18 +277,9 @@ submitButton.addEventListener("click", function () {
 });
 
 */
-//game over prompt when timer ends and all questions are answered
 
-//Selects element by id
-
-function sendMessage() {
-  // add + finalScore variable or replace img with final score
-  // hide Quiz time tracker section to include .time and #counter
-  timeEl.textContent = "End of game! Your score is ";
-  //var imgEl = document.createElement("img");
-  //imgEl.setAttribute("src", "images/image_1.jpg");
-  //mainEl.appendChild(imgEl);
-}
-
-setTime();
 //prompt for player's initials and save to localstorage
+window.onload = () => {
+  startScreen.classList.remove("hide");
+  displayContainer.classList.add("hide");
+};

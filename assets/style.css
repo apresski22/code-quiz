@@ -1,2 +1,23 @@
-/* radio button
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1%;
+  background-color: #13293d;
+  color: #fff;
+}
 
+#time,
+#counter {
+  color: red;
+  margin: 2% 0;
+}
+
+.question-container {
+  border-color: #13293d;
+  border-style: solid;
+}
+#question {
+  margin: 2% 0;
+  font-size: 110%;
+}
