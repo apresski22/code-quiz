@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <link rel="stylesheet" href="/assets/style.css" />
+    <title>Code Quiz</title>
+  </head>
+  <body>
+    <header class="start" style="text-align: center">
+      <div class="container">
+        <h2 id="intro" style="text-align: center">
+          Are you a coding know-it-all? Let's find out!
+        </h2>
+        <button id="start">Start</button>
+      </div>
+    </header>
+    <!-- hide h2 element below when timer hits zero -->
+    <!-- group h2 elements together so they hide at the same time -->
+    <section class="container">
+      <div id="tracker" class="hide">Time remaining</div>
+      <div id="time" style="text-align: centerleft"></div>
+    </section>
+    <!-- put in upper right corner -->
+    <section class="container">
+      <div id="score" class="hide">
+        Current Score:<span id="counter"></span>
+      </div>
+    </section>
+    <div class="question-container hide">
+      <div class="result"></div>
+      <div id="question">Question goes here.</div>
+      <div class="option-container"></div>
+    </div>
+    <button id="next-question" class="hide">Next</button>
+    <script src="./assets/script.js"></script>
+  </body>
+</html>
