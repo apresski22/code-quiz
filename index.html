@@ -13,47 +13,27 @@
         <h2 id="intro" style="text-align: center">
           Are you a coding know-it-all? Let's find out!
         </h2>
-        <button onclick="startButton()" id="start">Start</button>
+        <button id="start">Start</button>
       </div>
     </header>
     <!-- hide h2 element below when timer hits zero -->
     <!-- group h2 elements together so they hide at the same time -->
     <section class="container">
-      <div id="tracker">Time remaining</div>
+      <div id="tracker" class="hide">Time remaining</div>
       <div id="time" style="text-align: centerleft"></div>
     </section>
     <!-- put in upper right corner -->
     <section class="container">
-      <div id="score">Current Score:<span id="counter"></span></div>
+      <div id="score" class="hide">
+        Current Score:<span id="counter"></span>
+      </div>
     </section>
-
-    <div class="question-container">
+    <div class="question-container hide">
       <div class="result"></div>
       <div id="question">Question goes here.</div>
-      <div class="option-container">
-        <!-- change to radio -->
-        <!--<button class="option" onclick="" id="op1">option1</button>-->
-        <input type="radio" onclick="" id="op1" />
-        <button class="option" id="op2">option2</button>
-
-        <button class="option" id="op3">option3</button>
-
-        <button class="option" id="op4">option4</button>
-      </div>
-      <div class="navigation">
-        <button class="evaluate">Evaluate</button>
-        <button class="next">Next</button>
-      </div>
+      <div class="option-container"></div>
     </div>
-    <form id="initials">
-      <div class="row">
-          <div class="col-12 col-sm-6">
-            <label for="initials">Save your score!</label>
-            <input type="text" class="form-input" name="initials" placeholder="Enter your initials" />
-          </div>
-          <button class="btn btn-block btn-danger">Submit</button>
-    </form>
-
+    <button id="next-question" class="hide">Next</button>
     <script src="./assets/script.js"></script>
   </body>
 </html>

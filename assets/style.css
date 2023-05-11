@@ -21,3 +21,6 @@ header {
   margin: 2% 0;
   font-size: 110%;
 }
+.hide {
+  display: none;
+}
