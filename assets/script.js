@@ -13,16 +13,6 @@ function startQuiz() {
   showQuestion();
 }
 
-// {
-//     q: "HTML stands for",
-//     a: [
-//       { text: "How To Make Lunch", isCorrect: false },
-//       { text: "Happy Text Markup Language", isCorrect: false },
-//       { text: "HyperText Markup Language", isCorrect: true },
-//       { text: "It doesn't stand for anything", isCorrect: false },
-//     ],
-//   },
-
 //Do I have an element for it to go? Because i Need to control where It will go.
 // I have to select the element
 //What do I want to manipulate about the element
@@ -32,12 +22,13 @@ function startQuiz() {
 function showQuestion() {
   // we want it to work for any question
   var currentQuestion = questionBank[questionIndex];
-  document.getElementById("question").innerHTML = currentQuestion.q;
+  document.getElementById("question").innerHTML = currentQuestion.question;
   var optionContainer = document.querySelector(".option-container");
-  for (let i = 0; i < currentQuestion.a.length; i++) {
+  optionContainer.innerHTML = "";
+  for (let i = 0; i < currentQuestion.answer.length; i++) {
     var newButton = document.createElement("button");
-    newButton.innerHTML = currentQuestion.a[i].text;
-    if (currentQuestion.a[i].isCorrect == true) {
+    newButton.innerHTML = currentQuestion.answer[i].text;
+    if (currentQuestion.answer[i].isCorrect == true) {
       //research what you can do to the html element so than wen you check something baout the elemtn in event.target, you will know if it's right or wrong
       //set attribute,
       //get attribute to check answer
@@ -45,6 +36,8 @@ function showQuestion() {
     newButton.addEventListener("click", checkAnswer);
     optionContainer.append(newButton);
   }
+  var nextQuestion = document.getElementById("next-question");
+  nextQuestion.addEventListener("click", checkIfNextQuestionOrOver);
 }
 
 function checkAnswer(event) {
@@ -53,7 +46,7 @@ function checkAnswer(event) {
   //add html element to display result
   //we can do html element things to event.targer
 }
-//when we answer a question, we want to know if we can move to the next the next questioN?
+//when we answer answer question, we want to know if we can move to the next the next questioN?
 function checkIfNextQuestionOrOver() {
   if (questionIndex === questionBank.length - 1) {
     endQuiz();
@@ -87,8 +80,8 @@ function startTimer() {
 // Questions will be asked
 const questionBank = [
   {
-    q: "HTML stands for",
-    a: [
+    question: "HTML stands for",
+    answer: [
       { text: "How To Make Lunch", isCorrect: false },
       { text: "Happy Text Markup Language", isCorrect: false },
       { text: "HyperText Markup Language", isCorrect: true },
@@ -96,20 +89,20 @@ const questionBank = [
     ],
   },
   {
-    q: "JavaScript is",
-    a: [
+    question: "JavaScript is",
+    answer: [
       {
-        text: "a popular bookstore in New York",
+        text: "answer popular bookstore in New York",
         isCorrect: false,
       },
-      { text: "a type of font", isCorrect: false },
+      { text: "answer type of font", isCorrect: false },
       { text: "easy to learn", isCorrect: false },
       { text: "the main programming language for websites", isCorrect: true },
     ],
   },
   {
-    q: "To comment out a line in CSS use",
-    a: [
+    question: "To comment out answer line in CSS use",
+    answer: [
       { text: "<!--", isCorrect: false },
       { text: "#", isCorrect: false },
       { text: "/*", isCorrect: true },
@@ -117,12 +110,12 @@ const questionBank = [
     ],
   },
   {
-    q: "Which of the following is not an array method",
-    a: [
-      { text: "<!--", isCorrect: false },
-      { text: "#", isCorrect: false },
-      { text: "/*", isCorrect: true },
-      { text: "//", isCorrect: false },
+    question: "Which of the following is not an array method",
+    answer: [
+      { text: "push()", isCorrect: false },
+      { text: "concat()", isCorrect: false },
+      { text: "upperCase()", isCorrect: true },
+      { text: "flatMap()", isCorrect: false },
     ],
   },
 ];
@@ -141,7 +134,7 @@ function iterate(id) {
   //const question = document.getElementById("question");
 
   // Setting the question text
-  //question.innerText = Questions[id].q;
+  //question.innerText = Questions[id].question;
 
   // Getting the options
   const op1 = document.getElementById("op1");
@@ -150,16 +143,16 @@ function iterate(id) {
   const op4 = document.getElementById("op4");
 
   // Providing option text
-  op1.innerText = Questions[id].a[0].text;
-  op2.innerText = Questions[id].a[1].text;
-  op3.innerText = Questions[id].a[2].text;
-  op4.innerText = Questions[id].a[3].text;
+  op1.innerText = Questions[id].answer[0].text;
+  op2.innerText = Questions[id].answer[1].text;
+  op3.innerText = Questions[id].answer[2].text;
+  op4.innerText = Questions[id].answer[3].text;
 
   // Providing the true or false value to the options
-  op1.value = Questions[id].a[0].isCorrect;
-  op2.value = Questions[id].a[1].isCorrect;
-  op3.value = Questions[id].a[2].isCorrect;
-  op4.value = Questions[id].a[3].isCorrect;
+  op1.value = Questions[id].answer[0].isCorrect;
+  op2.value = Questions[id].answer[1].isCorrect;
+  op3.value = Questions[id].answer[2].isCorrect;
+  op4.value = Questions[id].answer[3].isCorrect;
 
   // Show selection for op1
   //11- event listener 1:03 Web APIs day2
