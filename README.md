@@ -1,6 +1,8 @@
 # code-quiz
 
 The code quiz is an application for testing your coding knowledge. There are four multiple choice questions that must be answered in 10 seconds. At the end of the quiz the user is prompted for their initials to save their score.
+![code-quiz-screenshot-1](https://github.com/apresski22/code-quiz/assets/129121040/9785f29a-6a7f-4f5f-be40-cd4f77f034df)
+![code-quiz-screenshot-2](https://github.com/apresski22/code-quiz/assets/129121040/20ef9f2a-3507-4b1b-bdb3-39880ba1389d)
 
 # installation
 
