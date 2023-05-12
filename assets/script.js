@@ -40,7 +40,13 @@ function showQuestion() {
   nextQuestion.addEventListener("click", checkIfNextQuestionOrOver);
 }
 
+//code below not working
 function checkAnswer(event) {
+  var currentQuestion = questionBank[questionIndex];
+  if (currentQuestion.answer.isCorrect == "true") {
+    result.innerHTML = "True";
+    result.style.color = "green";
+  }
   console.log("Checking answer");
   console.log(event.target);
   //add html element to display result
@@ -92,18 +98,18 @@ const questionBank = [
     question: "JavaScript is",
     answer: [
       {
-        text: "answer popular bookstore in New York",
+        text: "a popular bookstore in New York",
         isCorrect: false,
       },
-      { text: "answer type of font", isCorrect: false },
+      { text: "a type of font", isCorrect: false },
       { text: "easy to learn", isCorrect: false },
       { text: "the main programming language for websites", isCorrect: true },
     ],
   },
   {
-    question: "To comment out answer line in CSS use",
+    question: "To comment out a line in CSS use",
     answer: [
-      { text: "<!--", isCorrect: false },
+      { text: "!", isCorrect: false },
       { text: "#", isCorrect: false },
       { text: "/*", isCorrect: true },
       { text: "//", isCorrect: false },
@@ -120,77 +126,11 @@ const questionBank = [
   },
 ];
 
-// Set start is last line 277
-//var start = true;
-
-// Iterate
-function iterate(id) {
+function getScore() {
   // Getting the result display section
-  var result = document.getElementsByClassName("result");
-  result[0].innerText = "";
+  var score = document.getElementById("counter");
+  score.innerText = "";
   // Getting the score display section
-
-  // Getting the question
-  //const question = document.getElementById("question");
-
-  // Setting the question text
-  //question.innerText = Questions[id].question;
-
-  // Getting the options
-  const op1 = document.getElementById("op1");
-  const op2 = document.getElementById("op2");
-  const op3 = document.getElementById("op3");
-  const op4 = document.getElementById("op4");
-
-  // Providing option text
-  op1.innerText = Questions[id].answer[0].text;
-  op2.innerText = Questions[id].answer[1].text;
-  op3.innerText = Questions[id].answer[2].text;
-  op4.innerText = Questions[id].answer[3].text;
-
-  // Providing the true or false value to the options
-  op1.value = Questions[id].answer[0].isCorrect;
-  op2.value = Questions[id].answer[1].isCorrect;
-  op3.value = Questions[id].answer[2].isCorrect;
-  op4.value = Questions[id].answer[3].isCorrect;
-
-  // Show selection for op1
-  //11- event listener 1:03 Web APIs day2
-  var selected = "";
-  op1.addEventListener("click", () => {
-    op1.style.backgroundColor = "lightgoldenrodyellow";
-    op2.style.backgroundColor = "lightskyblue";
-    op3.style.backgroundColor = "lightskyblue";
-    op4.style.backgroundColor = "lightskyblue";
-    selected = op1.value;
-  });
-
-  // Show selection for op2
-  op2.addEventListener("click", () => {
-    op1.style.backgroundColor = "lightskyblue";
-    op2.style.backgroundColor = "lightgoldenrodyellow";
-    op3.style.backgroundColor = "lightskyblue";
-    op4.style.backgroundColor = "lightskyblue";
-    selected = op2.value;
-  });
-
-  // Show selection for op3
-  op3.addEventListener("click", () => {
-    op1.style.backgroundColor = "lightskyblue";
-    op2.style.backgroundColor = "lightskyblue";
-    op3.style.backgroundColor = "lightgoldenrodyellow";
-    op4.style.backgroundColor = "lightskyblue";
-    selected = op3.value;
-  });
-
-  // Show selection for op4
-  op4.addEventListener("click", () => {
-    op1.style.backgroundColor = "lightskyblue";
-    op2.style.backgroundColor = "lightskyblue";
-    op3.style.backgroundColor = "lightskyblue";
-    op4.style.backgroundColor = "lightgoldenrodyellow";
-    selected = op4.value;
-  });
 
   // Grabbing the evaluate button
 
@@ -231,23 +171,6 @@ evaluate[0].addEventListener("click", () {
   //   }
   // });
 }
-
-// if (start) {
-//   iterate("0");
-// }
-
-// // Next button and method
-// const next = document.getElementsByClassName("next")[0];
-// var id = 0;
-
-// next.addEventListener("click", () => {
-//   start = false;
-//   if (id < 3) {
-//     id++;
-//     iterate(id);
-//     console.log(id);
-//   }
-// });
 
 // decrement function for incorrect answer - local storage
 // if answer == true, keep timer going, if answer !=, decrement i-- from timer

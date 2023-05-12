@@ -5,6 +5,7 @@ header {
   padding: 1%;
   background-color: #13293d;
   color: #fff;
+  text-align: center;
 }
 
 #time,
@@ -16,11 +17,18 @@ header {
 .question-container {
   border-color: #13293d;
   border-style: solid;
+  flex-wrap: wrap;
 }
 #question {
   margin: 2% 0;
   font-size: 110%;
+  padding-left: 2ch;
 }
 .hide {
   display: none;
+}
+
+button {
+  display: block;
+  margin: 1ch;
 }
